@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yatri,s Booking Form</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:#f5f5f5;
+}
+
+.container{
+text-align:center;
+padding:20px;
+}
+
+.icons{
+display:flex;
+justify-content:center;
+gap:80px;
+margin-bottom:30px;
+}
+
+.icon-card{
+text-align:center;
+}
+
+.icon-card img{
+width:80px;
+height:80px;
+margin-bottom:5px;
+}
+
+.card{
+background:grey;
+padding:25px;
+margin:auto;
+border-radius:10px;
+box-shadow:0 0 10px #ccc;
+max-width:500px;
+}
+
+input,select,textarea{
+width:90%;
+padding:10px;
+margin:8px;
+border-radius:5px;
+border:1px solid #ccc;
+}
+
+.phone-box{
+display:flex;
+justify-content:center;
+}
+
+.phone-box select{
+width:25%;
+}
+
+.phone-box input{
+width:60%;
+margin-left:5px;
+}
+
+.btn{
+background:#ff4d6d;
+color:white;
+padding:12px 30px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+}
+
+#msg{
+display:none;
+color:green;
+font-weight:bold;
+margin-top:12px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Yatri,s Information</h1>
+<h2>Select Events</h2>
+
+<!-- TOP ICONS WITH TICK -->
+<div class="icons">
+
+<div class="icon-card">
+<img src="gurpurab.jpg">
+<p>Gurpurab</p>
+<label><input type="checkbox" name="gurpurab" value="Selected"></label>
+</div>
+
+<div class="icon-card">
+<img src="vaisakhi.jpg">
+<p>Vaisakhi</p>
+<label><input type="checkbox" name="vaisakhi" value="Selected"></label>
+</div>
+
+</div>
+
+<div class="card">
+
+<form id="myForm">
+
+<input type="text" name="name" placeholder="Enter Your Name" required>
+<!-- PHONE -->
+<div class="phone-box">
+<select name="code" id="code" required>
+<option value="">Code</option>
+<option value="+1">USA (+1)</option>
+</select>
+<input type="text" name="phone" placeholder="Phone Number" required>
+</div>
+
+<!-- USA STATES -->
+<select name="state" id="state" required>
+<option value="">Select State</option>
+<option value="usa">Alabama</option>
+<option value="usa">Alaska</option>
+<option value="usa">Arizona</option>
+<option value="usa">Arkansas</option>
+<option value="usa">California</option>
+<option value="usa">Colorado</option>
+<option value="usa">Connecticut</option>
+<option value="usa">Delaware</option>
+<option value="usa">Florida</option>
+<option value="usa">Georgia</option>
+<option value="usa">Hawaii</option>
+<option value="usa">Idaho</option>
+<option value="usa">Illinois</option>
+<option value="usa">Indiana</option>
+<option value="usa">Iowa</option>
+<option value="usa">Kansas</option>
+<option value="usa">Kentucky</option>
+<option value="usa">Louisiana</option>
+<option value="usa">Maine</option>
+<option value="usa">Maryland</option>
+<option value="usa">Massachusetts</option>
+<option value="usa">Michigan</option>
+<option value="usa">Minnesota</option>
+<option value="usa">Mississippi</option>
+<option value="usa">Missouri</option>
+<option value="usa">Montana</option>
+<option value="usa">Nebraska</option>
+<option value="usa">Nevada</option>
+<option value="usa">New Hampshire</option>
+<option value="usa">New Jersey</option>
+<option value="usa">New Mexico</option>
+<option value="usa">New York</option>
+<option value="usa">North Carolina</option>
+<option value="usa">North Dakota</option>
+<option value="usa">Ohio</option>
+<option value="usa">Oklahoma</option>
+<option value="usa">Oregon</option>
+<option value="usa">Pennsylvania</option>
+<option value="usa">Rhode Island</option>
+<option value="usa">South Carolina</option>
+<option value="usa">South Dakota</option>
+<option value="usa">Tennessee</option>
+<option value="usa">Texas</option>
+<option value="usa">Utah</option>
+<option value="usa">Vermont</option>
+<option value="usa">Virginia</option>
+<option value="usa">Washington</option>
+<option value="usa">West Virginia</option>
+<option value="usa">Wisconsin</option>
+<option value="usa">Wyoming</option>
+</select>
+
+<!-- COUNTRY AUTO -->
+<select name="country" id="country" required>
+<option value="">Country Auto</option>
+<option>United States of America</option>
+</select>
+
+<input type="email" name="email" placeholder="Enter Your Email" required>
+
+<textarea name="message" placeholder="Send a Message"></textarea>
+
+<button type="submit" class="btn">Submit</button>
+
+</form>
+
+<p id="msg">Form Submitted Successfully ✅</p>
+
+</div>
+</div>
+
+<script>
+
+const scriptURL = 'https://script.google.com/macros/s/AKfycbxJKgIrHur21yDsaqjgg8He45TXDVyFs6qyUKop5sIFmfUIlKf5Ovh-0Va7pApa4k2x/exec';
+const form = document.getElementById('myForm');
+const msg = document.getElementById("msg");
+
+const state = document.getElementById("state");
+const country = document.getElementById("country");
+const code = document.getElementById("code");
+
+state.addEventListener("change", function(){
+if(this.value=="usa"){
+country.value="America";
+code.value="+1";
+}
+});
+
+form.addEventListener('submit', e => {
+e.preventDefault();
+fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+.then(response => {
+msg.style.display="block";
+form.reset();
+});
+});
+
+</script>
+
+</body>
+</html>
+
+
+
